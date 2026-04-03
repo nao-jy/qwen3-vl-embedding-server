@@ -60,7 +60,7 @@ qvle-server --host 0.0.0.0 --port 8000
 **Option C — with [uv](https://github.com/astral-sh/uv):**
 ```bash
 uv sync
-python server.py
+uv run python server.py
 ```
 
 The model downloads on first run (~60 seconds). Subsequent starts are faster once cached by HuggingFace.
@@ -209,7 +209,7 @@ FastAPI Server
 Qwen3-VL-Embedding-2B (GPU)
 ```
 
-Pooling: **last-token** (`outputs.last_hidden_state[:, -1, :]`), which is the correct method for this model family.
+Pooling: **last-token** — the attention mask is used to locate the final real token per sequence, so padding in batched requests doesn't affect embedding quality.
 
 ---
 
