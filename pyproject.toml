@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qwen3-vl-embedding-server"
+version = "1.0.0"
+description = "OpenAI-compatible multimodal embedding server for Qwen3-VL-Embedding"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Phillip McGinty"}
+]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.34.0",
+    "torch>=2.5.1",
+    "transformers>=4.49.0",
+    "Pillow>=11.1.0",
+    "requests>=2.32.3",
+    "pydantic>=2.10.6",
+    "python-multipart>=0.0.20",
+    "numpy>=1.24.0",
+]
+
+[project.scripts]
+qvle-server = "qwen3_vl_embedding_server.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/metik2009/qwen3-vl-embedding-server"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+qwen3_vl_embedding_server = ["*"]
