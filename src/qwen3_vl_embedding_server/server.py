@@ -255,7 +255,7 @@ async def load_model():
         model = AutoModel.from_pretrained(
             model_name,
             trust_remote_code=True,
-            torch_dtype=torch.float16 if device == "cuda" else torch.float32
+            dtype=torch.float16 if device == "cuda" else torch.float32
         ).to(device)
         model.eval()
         
