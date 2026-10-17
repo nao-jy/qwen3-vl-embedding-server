@@ -7,6 +7,7 @@ import time
 import base64
 import io
 import os
+from contextlib import asynccontextmanager
 from typing import Union, List, Optional
 from urllib.parse import urlparse
 import requests
@@ -16,8 +17,6 @@ from PIL import Image
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from transformers import AutoModel, AutoProcessor
-
-app = FastAPI(title="Qwen3-VL-Embedding Server")
 
 # Global model and processor
 model = None
@@ -236,8 +235,8 @@ def process_multimodal_inputs(inputs: List[MultimodalInput], instruction: Option
 # Model Loading
 # ============================================================================
 
-@app.on_event("startup")
-async def load_model():
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
     global model, processor, device
     print("=" * 60)
     print("Loading Qwen3-VL-Embedding-2B...")
@@ -272,6 +271,11 @@ async def load_model():
     except Exception as e:
         print(f"ERROR loading model: {e}")
         raise
+
+    yield
+
+
+app = FastAPI(title="Qwen3-VL-Embedding Server", lifespan=lifespan)
 
 
 # ============================================================================
