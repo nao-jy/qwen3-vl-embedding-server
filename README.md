@@ -16,17 +16,17 @@ Qwen3-VL-Embedding is one of the most capable open multimodal embedding models a
 
 ## Features
 
-| Feature | Status |
-|---------|--------|
-| Text embeddings (single/batch) | ✅ |
-| Image embeddings (base64) | ✅ |
-| Image embeddings (URL) | ✅ |
-| Image embeddings (local path) | ✅ |
-| Text + image together | ✅ |
-| OpenAI-compatible `/v1/embeddings` | ✅ |
-| Mixed batch support | ✅ |
-| Instruction-based embeddings | ✅ |
-| FP16 on CUDA | ✅ |
+| Feature                            | Status |
+| ---------------------------------- | ------ |
+| Text embeddings (single/batch)     | ✅     |
+| Image embeddings (base64)          | ✅     |
+| Image embeddings (URL)             | ✅     |
+| Image embeddings (local path)      | ✅     |
+| Text + image together              | ✅     |
+| OpenAI-compatible `/v1/embeddings` | ✅     |
+| Mixed batch support                | ✅     |
+| Instruction-based embeddings       | ✅     |
+| FP16 on CUDA                       | ✅     |
 
 ---
 
@@ -41,23 +41,26 @@ Qwen3-VL-Embedding is one of the most capable open multimodal embedding models a
 ### Install
 
 ```bash
-git clone https://github.com/metik2009/qwen3-vl-embedding-server.git
+git clone https://github.com/nao-jy/qwen3-vl-embedding-server.git
 cd qwen3-vl-embedding-server
 ```
 
 **Option A — direct run (simplest):**
+
 ```bash
 pip install -r requirements.txt
 python server.py
 ```
 
 **Option B — install as a package (enables the `qvle-server` CLI):**
+
 ```bash
 pip install -e .
 qvle-server --host 0.0.0.0 --port 8000
 ```
 
 **Option C — with [uv](https://github.com/astral-sh/uv):**
+
 ```bash
 uv sync
 uv run python server.py
@@ -184,12 +187,12 @@ The test suite covers text-only, base64, URL, local path, mixed batch, error han
 
 Tested on RTX 5070 Laptop (sm_120 Blackwell, 8GB VRAM):
 
-| Metric | Value |
-|--------|-------|
-| Model load | ~60s (first run) |
-| VRAM usage | ~4GB |
-| Text embedding | ~100ms |
-| Image + text | ~300ms |
+| Metric         | Value            |
+| -------------- | ---------------- |
+| Model load     | ~60s (first run) |
+| VRAM usage     | ~4GB             |
+| Text embedding | ~100ms           |
+| Image + text   | ~300ms           |
 
 ---
 

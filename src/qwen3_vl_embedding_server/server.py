@@ -243,8 +243,14 @@ async def load_model():
     print("Loading Qwen3-VL-Embedding-2B...")
     print("=" * 60)
     start = time.time()
-    
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    device = "cpu"
+
+    if torch.cuda.is_available():
+        device = "cuda"
+    elif torch.mps.is_available():
+        device = "mps"
+
     print(f"Using device: {device}")
     
     model_name = "Qwen/Qwen3-VL-Embedding-2B"
